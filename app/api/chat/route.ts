@@ -79,8 +79,5 @@ export async function POST(req: Request) {
         await writer.close()
     })()
 
-    const headers = new Headers()
-    headers.set('Content-Type', 'application/json; charset=utf-8')
-
-    return new Response(readable)
+    return new Response(readable, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
 }
