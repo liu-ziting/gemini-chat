@@ -1,4 +1,4 @@
-# GeminiChat
+# SmartChat
 
 ## Environment Variables
 
