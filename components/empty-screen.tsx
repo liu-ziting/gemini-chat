@@ -4,7 +4,18 @@ import { Button } from '@/components/ui/button'
 import { IconArrowRight } from '@/components/ui/icons'
 
 const exampleMessages = [
-
+ {
+    heading: 'Explain something playfully',
+    message: 'Use a pirate voice to explain the concepts of quantum physics in a lighthearted and playful manner.'
+  },
+  {
+    heading: 'Compose a professional email',
+    message: 'Draft a professional email introducing a new product feature to clients and stakeholders.'
+  },
+  {
+    heading: 'Revise my writing',
+    message: `Revise my writing:\n\nisn't it intrsintg how u can still rd this despit all the mistakez?`
+  }
 ];
 
 export function EmptyScreen({ setInput }: Pick<UseChatHelpers, 'setInput'>) {
