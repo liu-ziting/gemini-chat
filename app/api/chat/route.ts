@@ -25,7 +25,7 @@ export async function POST(req: Request) {
 
     const chatHistory = messages.map((message: { role: string; content: string }) => ({
         role: message.role,
-        parts: [{ text: message.content }]
+        parts: [message.content]
     }))
 
     const chat = model.startChat({
