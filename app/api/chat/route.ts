@@ -25,7 +25,7 @@ export async function POST(req: Request) {
 
     const chatHistory = messages.map((message: { role: string; content: string }) => ({
         role: message.role,
-        parts: [message.content]
+        parts: [{ text: message.content }]
     }))
 
     const chat = model.startChat({
@@ -49,8 +49,7 @@ export async function POST(req: Request) {
         for await (const chunk of result.stream) {
             const chunkText = chunk.text()
             text += chunkText
-            const encodedChunk = new TextEncoder().encode(chunkText)
-            await writer.write(encodedChunk)
+            await writer.write(new TextEncoder().encode(chunkText))
         }
 
         const id = json.id ?? nanoid()
