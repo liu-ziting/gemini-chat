@@ -1,13 +1,26 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-        port: '',
-        pathname: '**',
-      },
-    ],
-  },
-};
+    async headers() {
+        return [
+            {
+                source: '/',
+                headers: [
+                    {
+                        key: 'Content-Type',
+                        value: 'application/json; charset=utf-8'
+                    }
+                ]
+            }
+        ]
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+                port: '',
+                pathname: '**'
+            }
+        ]
+    }
+}
