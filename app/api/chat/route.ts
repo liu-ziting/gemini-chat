@@ -49,7 +49,8 @@ export async function POST(req: Request) {
         for await (const chunk of result.stream) {
             const chunkText = chunk.text()
             text += chunkText
-            await writer.write(new TextEncoder().encode(chunkText))
+            const encodedChunk = new TextEncoder().encode(chunkText)
+            await writer.write(encodedChunk)
         }
 
         const id = json.id ?? nanoid()
