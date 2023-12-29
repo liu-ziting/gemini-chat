@@ -78,5 +78,10 @@ export async function POST(req: Request) {
 
         await writer.close()
     })()
-    return new Response(readable, { headers: { 'Content-Type': 'application/json' } })
+    // return new Response(readable, { headers: { 'Content-Type': 'application/json' } })
+    return new Response(readable, {
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        }
+    })
 }
