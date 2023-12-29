@@ -7,7 +7,6 @@ export async function POST(req: Request) {
     const json = await req.json()
     const { messages } = json
     const userId = (await auth())?.user.id
-
     if (!userId) {
         return new Response('Unauthorized', {
             status: 401
@@ -78,6 +77,6 @@ export async function POST(req: Request) {
 
         await writer.close()
     })()
-
-    return new Response(readable, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
+    const responseBody = JSON.stringify({ content: readable })
+    return new Response(responseBody, { headers: { 'Content-Type': 'application/json' } })
 }
