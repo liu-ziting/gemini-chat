@@ -4,11 +4,10 @@ import { nanoid } from '@/lib/utils'
 import { genAI, generationConfig, safetySettings } from '@/lib/config'
 
 export async function POST(req: Request) {
+    req.headers.set('Content-Type', 'text/plain; charset=utf-8')
     const json = await req.json()
     const { messages } = json
     const userId = (await auth())?.user.id
-    const headers = new Headers()
-    headers.set('Content-Type', 'text/plain; charset=UTF-8')
     if (!userId) {
         return new Response('Unauthorized', {
             status: 401
@@ -79,5 +78,5 @@ export async function POST(req: Request) {
 
         await writer.close()
     })()
-    return new Response(readable, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
+    return new Response(readable, { headers: { 'Content-Type': 'application/json' } })
 }
